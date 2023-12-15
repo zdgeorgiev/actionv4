@@ -185,6 +185,7 @@ jobs:
             }]
           }'
 
+          descriptors=$(echo $descriptors | tr '\n' ' ')
           echo "descriptors=$descriptors" >> GITHUB_OUTPUT
 
   MatrixJob:
