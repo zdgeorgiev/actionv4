@@ -22,6 +22,17 @@ jobs:
           descriptors=$(echo $descriptors | tr '\n' ' ')
           echo "descriptors=$descriptors" >> GITHUB_OUTPUT
 
+  Test:
+    name: ${{ matrix.builder.label }} generate metadata
+    runs-on: [ ubuntu-latest ]
+    needs: [ Initialize ]
+    steps:
+      - name: ECHO
+        run: echo ${{ needs.Initialize.outputs.descriptors }}
+      - name: ECHO2
+        run: echo ${{ fromJSON(needs.Initialize.outputs.descriptors).builders.* }}
+
+
   MatrixJob:
     name: ${{ matrix.builder.label }} generate metadata
     runs-on: [ ubuntu-latest ]
